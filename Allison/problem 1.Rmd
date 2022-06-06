@@ -9,11 +9,13 @@ output:
  
  
 ```{r}
+# a is the arbitrary starting point (make it smaller that n) 
 a <- 2
+# n is the  arbitrary ending point
 n <- 23
 part_sum <- a
 
-
+# loop through until it gets to n 
 for (i in (a+1): n) {
   part_sum = part_sum + i 
   print(part_sum)
