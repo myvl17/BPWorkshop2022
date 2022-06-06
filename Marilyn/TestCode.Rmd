@@ -1,0 +1,15 @@
+---
+title: "Untitled"
+author: "Marilyn Vazquez"
+date: "6/6/2022"
+output: html_document
+---
+
+```{r}
+my_function <- function(input){
+  return(input*2)
+}
+
+print(my_function(5))
+```
+
