@@ -1,0 +1,33 @@
+---
+title: "testing_in_group"
+author: "allison"
+date: "6/6/2022"
+output:
+  pdf_document: default
+  html_document: default
+---
+ 
+ 
+```{r}
+a <- 2
+n <- 23
+part_sum <- a
+
+
+for (i in (a+1): n) {
+  part_sum = part_sum + i 
+  print(part_sum)
+}
+print(part_sum)
+```
+ 
+```{r}
+
+
+
+
+```
+
+
+
+
