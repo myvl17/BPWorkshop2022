@@ -1,0 +1,34 @@
+---
+title: "Problem 5"
+author: "Katelyn Smith"
+date: '2022-06-07'
+output: pdf_document
+---
+
+title: "Newtons Method"
+output:
+  html_document: default
+  pdf_document: default
+date: '2022-06-06'
+---
+
+```{r setup, include=FALSE}
+initial <- 2
+y <- function(x) { 
+return(x^3-3*x+1)
+  }
+
+deriv <- function(x)
+{3*x^2-3}
+tol = 0.0001
+
+while (tol >= 0.000001)
+{old <- initial - (y(initial)/deriv(initial))
+new <- old - (y(old)/deriv(old))
+tol <- abs(old - new)
+initial <- new
+return(new)}
+print(new)
+```
+
+
