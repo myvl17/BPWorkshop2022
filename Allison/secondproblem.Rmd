@@ -1,0 +1,51 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Cmd+Shift+Enter*. 
+
+```{r}
+
+# --------------------------
+
+# steps: set up the initial function f(x) not the acting function, the acting function will be using the recursion formula and comparing it to 
+
+# acting function that creates the f(x) function
+# acting function that finds the derivitive of f(x)
+
+# acting function that gives new value by using the recursion funtion, include tolerance, then set the initial value = the new value
+
+#--------------------------------------
+
+starting_value <- 2
+
+'this is the initial function- ex: f(x) = x^3-3x+1' 
+initial_function <- function(x) {
+  (x**3 +0*x**2-3*x + 1)
+}
+
+'this is the first derivitive of the function f(x) listed above'
+initial_function_prime <- function(y) {
+  (3*y **2 - 3)
+}
+
+'this is an acting function that uses the recursion function, we know ahead of time 
+that we want the tolerance to be 10^-4
+'
+find_root <- function(initial_value){
+  tolerance <- .00001
+  while (tolerance >= 10**-4){
+    new_value <- initial_value - (initial_function(initial_value) / initial_function_prime(initial_value))
+    tolerance <- (initial_value - new_value)
+    initial_value <- new_value
+  return(initial_value)
+  }
+}
+
+print(find_root(starting_value))
+
+```
+
