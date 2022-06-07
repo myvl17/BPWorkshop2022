@@ -1,6 +1,7 @@
 ---
 title: "R Notebook"
 output: html_notebook
+author: Allison Young
 ---
 
 This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
@@ -24,28 +25,35 @@ starting_value <- 2
 
 'this is the initial function- ex: f(x) = x^3-3x+1' 
 initial_function <- function(x) {
-  (x**3 +0*x**2-3*x + 1)
+  return(x**3 +0*x**2-3*x + 1)
 }
+
 
 'this is the first derivitive of the function f(x) listed above'
 initial_function_prime <- function(y) {
-  (3*y **2 - 3)
+  return(3*y **2 - 3)
 }
+
 
 'this is an acting function that uses the recursion function, we know ahead of time 
 that we want the tolerance to be 10^-4
 '
 find_root <- function(initial_value){
-  tolerance <- .00001
+  tolerance <- 1000
   while (tolerance >= 10**-4){
     new_value <- initial_value - (initial_function(initial_value) / initial_function_prime(initial_value))
+    print(new_value)
     tolerance <- (initial_value - new_value)
+    #print(tolerance)
     initial_value <- new_value
-  return(initial_value)
+    #print(initial_value)
   }
+  return(initial_value)
 }
+print ( find_root(starting_value))
 
-print(find_root(starting_value))
+
+
 
 ```
 
