@@ -1,0 +1,39 @@
+---
+title: "Penguins in Antarctica"
+author: "Katelyn Smith"
+date: '2022-06-08'
+output: html_document
+---
+
+```{r setup, include=TRUE}
+knitr::opts_chunk$set(echo = TRUE)
+library(readxl)
+library(dplyr)
+library(ggplot2)
+Penguins <- read.csv("/Users/kgsmi/OneDrive/Documents/Bryan research/penguins_lter.csv")
+```
+
+```{r}
+  summary(Penguins)
+print(Penguins)
+```
+```{r}
+#What is the correlation between flipper length and body mass?
+ggplot(Penguins, aes(x = Body.Mass..g., y = Flipper.Length..mm.), color = sex) +
+  geom_point()
+```
+
+```{r}
+#How many penguins on dream island have clutch completion?
+dream_island <- Penguins %>% filter(Island == "Dream")
+```
+
+```{r}
+ggplot(data = dream_island, aes(x = Clutch.Completion)) + geom_bar(fill = "pink")
+```
+```{r}
+#box plot of culmen length for species
+ggplot(Penguins, aes(x = Species, y = Culmen.Length..mm.)) + geom_boxplot() + scale_x_discrete(labels = c("Adelie Penguin (Pygoscelis adeliae)" = "Adelie","Chinstrap penguin (Pygoscelis antarctica)" = "Chinstrap","Gentoo penguin (Pygoscelis papua)" = "Gentoo"))
+```
+
+
