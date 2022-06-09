@@ -1,0 +1,66 @@
+---
+title: "06/07/testing"
+author: "Allison Y"
+date: '2022-06-07'
+output: html_document
+last update : '16:45 on 06/07'
+---
+
+```{r}
+library(tidyverse)
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+
+# reading in the file from my computer
+amazon <- read.csv("/Users/allisony/Documents/GitHub/BPWorkshop2022/Allison/book_data_sets/amazon_products1.csv")
+
+
+# making a copy that inserts NA into the blank spaces, because amazon has many blank rows
+amazon_copy <- amazon
+amazon_copy[amazon_copy==""]<-NA
+
+
+# the column price is seen as letters, the line below "translates" using parse into numbers
+amazon_copy$Price = parse_number(amazon_copy$Price)
+
+# this takes out all rows with NA in them that we inserted earlier, then arrances price from lowest to highest
+clean_amazon_copy = na.omit(amazon_copy) %>%
+  arrange(Price) 
+
+
+# this is to make the bar graph don't ask why
+plot_graph1 <- ggplot(data = clean_amazon_copy, aes(x = Book.Name, y = Price)) +
+  geom_bar(stat = "identity") 
+  #plot_graph1
+
+plot_graph1
+
+#problems: can't read the book titles, book titles aren't listed from greatest price to least price,
+# generally hard to read
+
+barnes <- read.csv("book_data_sets/barnes_products1.csv")
+ebay <- read.csv("book_data_sets/ebay_products1.csv")
+
+# histogram to show the most common price range of books from amazon,
+# problem: the ranges are hard to read
+plot_graph2 <- ggplot(clean_amazon_copy , aes(x= Price)) + 
+  theme(axis.text.x = element_text(angle = 90)) +
+  geom_histogram(binwidth = 11)
+plot_graph2
+
+#last graph or chart 
+# what was the most reviewed book? clean nonsense rows then find max from column 4
+
+#cleaned outside of R in excel
+clean_reviews <- read.csv("/Users/allisony/Documents/GitHub/BPWorkshop2022/Allison/book_data_sets/amazon_clean_reviews.csv")
+
+#line below is supposed to make sure that the ratings are numbers
+clean_reviews$Rating = parse_number(clean_reviews$Rating)
+#line below is to get rid of the NA columns 
+  clean_reviews = na.omit(clean_reviews) %>%
+# line below is to find the max number in coulumn 4 
+max(clean_reviews[,4])
+
+
+```
