@@ -1,7 +1,9 @@
 ---
 title: "R Notebook"
-output: html_notebook
-author: Allison Young
+author: "Allison Young"
+output:
+  html_document:
+    df_print: paged
 ---
 
 This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
@@ -25,15 +27,14 @@ starting_value <- 2
 
 'this is the initial function- ex: f(x) = x^3-3x+1' 
 initial_function <- function(x) {
-  return(x**3 +0*x**2-3*x + 1)
+  return(x**2-2)
 }
 
 
 'this is the first derivitive of the function f(x) listed above'
 initial_function_prime <- function(y) {
-  return(3*y **2 - 3)
+  return(2*y)
 }
-
 
 'this is an acting function that uses the recursion function, we know ahead of time 
 that we want the tolerance to be 10^-4
