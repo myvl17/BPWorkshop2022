@@ -1,0 +1,122 @@
+---
+title: "worksheet6"
+author: "Tanith Norris"
+date: '2022-06-10'
+output: html_document
+---
+
+```{r}
+## EXERCISE 1
+
+xInitial <- 2
+  
+## Define function and derivative (prime) function
+initFunction <- function(x)
+{return(x**2-2)}
+
+functionDeriv <- function(x)
+{return(2*x)}
+
+## Create actual Newtons Method Function Thing
+## Purpose of it is finding the root, so that's what
+## I'm gonna name it
+find_root <- function(xInitial){
+  while (tolerance >= .000001){
+    xNew <- xInitial - (initFunction(xInitial) / functionDeriv(xInitial))
+  
+## Check work with a print
+    print(xNew)
+    tolerance <- (xInitial - xNew)
+    #print(tolerance)
+    xInitial <- xNew
+    #print(initial_value)
+  }
+    return(xInitial)
+}
+print ( find_root(xInitial))
+```
+
+```{r}
+## EXERCISE 2
+
+xInitial <- 2
+tolerance <- .00001
+  
+## Define function and derivative (prime) function
+initFunction <- function(x)
+{return(x**2-2)}
+
+functionDeriv <- function(x)
+{return(2*x)}
+
+## Create actual Newtons Method Function Thing
+## Purpose of it is finding the root, so that's what
+## I'm gonna name it
+find_root <- function(xInitial, tolerance){
+  while (tolerance >= .000001){
+    xNew <- xInitial - (initFunction(xInitial) / functionDeriv(xInitial))
+  
+## Check work with a print
+    print(xNew)
+    tolerance <- (xInitial - xNew)
+    #print(tolerance)
+    xInitial <- xNew
+    #print(initial_value)
+  }
+    return(xInitial)
+}
+print ( find_root(xInitial, tolerance))
+
+```
+
+```{r}
+## EXERCISE 3
+
+## Different parameters than before
+xInitial <- -.7
+tolerance <- .0000000001
+realValue <- .6823278038280193
+  
+## Define function and derivative (prime) function
+## Different parameters than before
+initFunction <- function(x)
+{return(x**3+x-1)}
+
+functionDeriv <- function(x)
+{return(3*x**2+1)}
+
+## Create actual Newtons Method Function Thing
+## Purpose of it is finding the root, so that's what
+## I'm gonna name it.
+## Same process as before
+find_root <- function(xInitial, tolerance){
+  errorOneLess <- c()
+  while (tolerance >= 10**-10){
+    xNew <- xInitial - (initFunction(xInitial) / functionDeriv(xInitial))
+  
+## Check work with a print
+    print(xNew)
+    tolerance <- (xInitial - xNew)
+    #print(tolerance)
+    xInitial <- xNew
+    #print(initial_value)
+    
+## Incorporate Error Findings and create vector
+  ## First Absolute Error
+    absError <- abs(xInitial - realValue)
+    cat("Absolute Error:",absError)
+    #print(absError)
+    
+  ## Now for e_(i-1)
+    errorOneLess <- c(errorOneLess, absError)
+  
+  ## Now for current error 
+    currentError <- (absError / errorOneLess**2)
+    print(currentError)
+  }
+    return(xInitial)
+    return(errorOneLess)
+}
+print (find_root(xInitial, tolerance))
+
+```
