@@ -1,0 +1,121 @@
+---
+title: "WS 6 Problems 4-6"
+author: "Katelyn Smith"
+date: '2022-06-10'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+#Problem 4
+#Use your new implementation of Newton’s Method to approximate the root off(x) =x2.  Let your initial valuex0= 1.  Using the vector returned in your answer, calculatethe errorei=|xi−r|at each step, whererrepresents the true value.  Also calculate thecurrent error divided by the previous error squared i.e.eiei−1.  What do you notice about theerror termsei?  What do you notice about the termseie2i−1?
+starting_value <- 1
+#initial function 
+initial_function <- function(x) {
+return(x^2)
+}
+#derivative of inital function
+initial_function_prime <- function(y) {
+  return(2*y)
+}
+#loop to find root at tolerance 1
+find_root <- function(initial_value){
+  tolerance <- 10
+  iterations <- c()
+  while (tolerance >= 10^-10){
+    new_value <- initial_value - (initial_function(initial_value) / initial_function_prime(initial_value))
+    #print(new_value)
+    tolerance <- abs(initial_value - new_value)
+    iterations <- c(iterations, new_value)
+    #print(tolerance)
+    initial_value <- new_value
+    #print(initial_value)
+  }
+  error <- c()
+  #print(length(iterations))
+  for (i in 1:length(iterations)) {
+    e <- abs(iterations[i] - -1.769292354238631)
+    #print(e)
+    error <- c(error, e)
+    #print(error)
+  } 
+  per <- c()
+for (j in 1:(length(error)-1)) {
+  p <- (error[j + 1] / error[j])
+  per <- c(per, p)
+}
+  return(per)}
+print(find_root(starting_value))
+```
+
+
+```{r}
+#5
+}
+#derivative of inital function
+initial_function_prime <- function(y) {
+  return(2*y)
+}
+#loop to find root at tolerance 1
+find_root <- function(initial_value, max_iterations){
+  iterations <- c()
+  count = 0
+  while (count <= max_iterations){
+    new_value <- initial_value - (initial_function(initial_value) / initial_function_prime(initial_value))
+    #print(new_value)
+    tolerance <- abs(initial_value - new_value)
+    iterations <- c(iterations, new_value)
+    #print(tolerance)
+    initial_value <- new_value
+    #print(initial_value)
+    count = count + 1
+  }
+  return(iterations)
+}
+print(find_root(starting_value, 7))
+```
+
+
+```{r}
+#6
+starting_value <- 0
+#initial function 
+initial_function <- function(x) {
+return(x^3-2*x+2)
+}
+#derivative of inital function
+initial_function_prime <- function(y) {
+  return(3*y^2-2)
+}
+#loop to find root at tolerance 1
+find_root <- function(initial_value, max_iterations){
+  iterations <- c()
+  count = 0
+  while (count <= max_iterations){
+    new_value <- initial_value - (initial_function(initial_value) / initial_function_prime(initial_value))
+    #print(new_value)
+    tolerance <- abs(initial_value - new_value)
+    iterations <- c(iterations, new_value)
+    #print(tolerance)
+    initial_value <- new_value
+    #print(initial_value)
+    count = count + 1
+    #return(iterations)
+  }
+  #print(max_iterations)
+  error <- c()
+  #print(length(iterations))
+  for (i in 1:max_iterations) {
+    e <- abs(iterations[i] - -1.769292354238631)
+    #print(e)
+    error <- c(error, e)
+    #print(error)
+  } 
+  per <- c()
+for (j in 1:(max_iterations-1)) {
+  p <- (error[j + 1] / error[j])
+  per <- c(per, p)
+}
+  return(per)}
+print(find_root(starting_value, 10))
+```
+
