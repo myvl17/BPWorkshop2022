@@ -1,0 +1,47 @@
+---
+title: "Untitled"
+output: html_document
+date: '2022-06-10'
+---
+```{r}
+iterations <- c()
+newtonsMethod <- function(x_0) {
+  x_n = x_0 - f_input(x_0) / f_prime(x_0)
+  iterations <<- c(iterations, x_n)
+  
+  if (abs(x_0 - x_n) < 10^(-10))
+    return(x_n)
+  else
+    return(newtonsMethod(x_n))
+  
+}
+
+f_input <- function(x) {
+  return(x^3 + x - 1)
+}
+
+f_prime <- function(x) {
+  return(3 * x^2 + 1)
+}
+
+x_i <- newtonsMethod(-7)
+
+error_array <- c()
+
+for (i in iterations)
+  error_array <<- c(error_array, abs(i - x_i))
+
+print(error_array)
+
+quadratic_array <- c()
+
+for (i in 1:(length(error_array)-1))
+  quadratic_array <<- c(quadratic_array, error_array[i+1] / error_array[i]^2)
+
+print(quadratic_array)
+  
+
+
+
+```
+

@@ -1,0 +1,121 @@
+---
+title: "worksheet6v1"
+output: html_document
+date: '2022-06-10'
+---
+
+```{r}
+# problem 1
+
+starting_value <- 2
+'this is the initial function- ex: f(x) = x^3-3x+1' 
+initial_function <- function(x) {
+  return(x**2 - 2)
+}
+'this is the first derivitive of the function f(x) listed above'
+initial_function_prime <- function(x) {
+  return(2*x)
+}
+'this is an acting function that uses the recursion function, we know ahead of time 
+that we want the tolerance to be 10^-4
+'
+find_root <- function(initial_value){
+  # I do not know why tolerance is 1000 in this case
+  tolerance <- 1000
+  while (tolerance >= 10**-4){
+    new_value <- initial_value - (initial_function(initial_value) / initial_function_prime(initial_value))
+    print(new_value)
+    tolerance <- (initial_value - new_value)
+    #print(tolerance)
+    initial_value <- new_value
+    #print(initial_value)
+  }
+  return(initial_value)
+}
+print ( find_root(starting_value))
+
+```
+
+```{r}
+# problem 2 
+ # Create a Newton’s Method implementation to have tolerance be one of the input values for your function. Also, instead of erasing every step, save every iteration xn on a vector that you return at the end of your algorithm.
+
+# input value that the tolerance will be : original starting value 
+
+starting_value <- 2
+# 'this is the initial function- ex: f(x) = x^3-3x+1' 
+initial_function <- function(x) {
+  return(x^2 - 2)
+}
+# 'this is the first derivitive of the function f(x) listed above'
+initial_function_prime <- function(x) {
+  return(2*x)
+}
+#this is an acting function that uses the recursion function, we know ahead of time 
+#that we want the tolerance to be 10^-4
+# the iteration step is while
+find_root <- function(initial_value){
+  # all tolerances need to be the same exact number for this case
+  tolerance <- 2
+  # line below creates an empty vector 
+  e_vector <- c()
+  while (tolerance >= 2 ){
+    new_value <- initial_value - (initial_function(initial_value) / initial_function_prime(initial_value))
+    print(new_value)
+    tolerance <- (initial_value - new_value)
+    # line below puts new_value in the empty spots of the e_vector which was previously empty
+    e_vector <- c(e_vector , new_value)
+    initial_value <- new_value
+  }
+  #return(initial_value)
+  return(e_vector)
+}
+print ( find_root(initial_value))
+print(e_vector)
+
+
+```
+
+```{r}
+# problem 3 
+
+# input value that the tolerance will be : original starting value 
+
+starting_value <- -0.7
+# 'this is the initial function- ex: f(x) = x^3-3x+1' 
+initial_function <- function(x) {
+  return(x^3 +x- 1)
+}
+# 'this is the first derivitive of the function f(x) listed above'
+initial_function_prime <- function(x) {
+  return(3x^2+1)
+}
+#this is an acting function that uses the recursion function, we know ahead of time 
+#that we want the tolerance to be 10^-4
+# the iteration step is while
+find_root <- function(initial_value){
+  # all tolerances need to be the same exact number for this case
+  tolerance <- 10^-10
+  # line below creates an empty vector 
+  e_vector <- c()
+  while (tolerance >= 10^-10 ){
+    new_value <- initial_value - (initial_function(initial_value) / initial_function_prime(initial_value))
+    print(new_value)
+    tolerance <- (initial_value - new_value)
+    # line below puts new_value in the empty spots of the e_vector which was previously empty
+    e_vector <- c(e_vector , new_value)
+    initial_value <- new_value
+  }
+  #return(initial_value)
+  return(e_vector)
+  # using this vector calculate the current error divided by nthe previous error squared
+  
+  #current error: 
+  #previous error: 
+}
+print ( find_root(initial_value))
+
+
+```
+
+
