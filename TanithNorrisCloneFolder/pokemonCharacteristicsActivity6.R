@@ -1,11 +1,9 @@
 ---
-  title: "Pokemon Assessment"
+title: "Pokemon Assessment"
 author: "Tanith Norris"
 date: "6/8/2022"
 output: html_document
 ---
-  
-```{r}
 
 ## Load in the relevant packages to read data
 library(tidyverse)
@@ -15,8 +13,8 @@ library(skimr)
 
 ## Load in Pokemon Databases
 
-pokemonDatabase <- read_excel("GitHub/BPWorkshop2022/PokemonDatabaseOFFICIAL.xlsx")
-pokemonDatabase <- pokemonDatabase %>%
+pokemonDatabase <- read_excel("GitHub/BPWorkshop2022/PokemonDatabase.xlsx")
+pokemonDatabaseReal <- PokemonDatabase %>%
   select(number, pokemon_name, main_type, 
                   attack, defense, stamina,
                   "height(m)", "weight (kg)", 
@@ -128,5 +126,3 @@ plot(hwVector,
 ## STEP THREE: Create new column defining elements
 ## "Uderweight," "Healthy," "Overweight,"
 ## & "Obese" for pokemon. 
-
-```
