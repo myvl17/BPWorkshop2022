@@ -1,0 +1,44 @@
+---
+title: "Data Cleaning 06/13"
+author: "Tanith Norris"
+date: '2022-06-13'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+## Open necessary library packages
+
+library(tidyverse)
+library(readxl)
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+
+## Call to needed datasets
+
+RedCapData <- read_excel("C:/Users/tanit/Downloads/DownSyndromeDigitalH_DATA_2022-06-13_1036.xls")
+View(DownSyndromeDigitalH_DATA_2022_06_13_1036)
+
+## make a copy filling in all the blank rows with NA
+
+RedCapDataCopy <- RedCapData
+RedCapDataCopy
+
+View(RedCapDataCopy)
+
+## Remove rows including NA
+
+clean_RedCapDataCopy <- RedCapDataCopy[!(RedCapDataCopy$digital_habits_survey_timestamp== "[not completed]"),]
+  
+View(clean_RedCapDataCopy)
+
+##Save copy when done
+
+
+
+
+```
+
+
+
+
